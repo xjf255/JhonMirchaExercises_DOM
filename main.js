@@ -53,4 +53,4 @@ stopAlarm(btnSections[3],btnSections[2])
 
 altkeyboard();
 moveBall('.scenary__ball','.scenary');
-timeout(`.time`,`2004,05,25`);
+timeout(`.time`,`2024,05,02`);
