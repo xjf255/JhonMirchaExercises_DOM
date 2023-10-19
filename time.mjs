@@ -24,4 +24,4 @@ function timeout(where, init = undefined) {
             clearInterval(timeInterval)
         }
     }
-}
+}   

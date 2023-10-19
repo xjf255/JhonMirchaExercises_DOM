@@ -2,6 +2,7 @@ import { menuHamburguer, cerrarHamburguer } from "./menu.mjs";
 import { clock,initAlarm, stopAlarm } from "./reloj.mjs";
 import { altkeyboard, moveBall } from "./keyboard.mjs";
 import timeout from "./time.mjs";
+import { btnScroll } from "./btn-scroll.mjs";
 //Variables DOM
 const $main = document.getElementById("main");
 const $navSections = document.querySelector(".nav__sct")
@@ -54,3 +55,4 @@ stopAlarm(btnSections[3],btnSections[2])
 altkeyboard();
 moveBall('.scenary__ball','.scenary');
 timeout(`.time`,`2024,05,02`);
+btnScroll(`.top`);

@@ -38,7 +38,7 @@ header {
     position: absolute;
 }
 
-#nav__menu {
+.nav__menu {
     position: fixed;
     height: 60px;
     width: 60px;
@@ -48,6 +48,9 @@ header {
     border-radius: 50%;
     margin: 0 25px 25px 0;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #bars {
@@ -57,7 +60,28 @@ header {
     justify-content: center;
     align-items: center;
 }
-
+.top{
+    right: 70px;
+    transition: all 3s ease-out;
+}
+.top-hiden{
+    visibility: hidden;
+    opacity: 0;
+    cursor: none;
+}
+.top a{
+    color: inherit;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+.top:hover{
+    background-color: #000;
+    color: var(--primary-color);
+}
 .nav__sct {
     width: 100vw;
     height: 100vh;
@@ -131,7 +155,6 @@ input {
     width: 60px;
     height: 60px;
     background-color: yellow;
-    z-index: 1;
     margin: 10px;
     border-radius: 50%;
     transform: translate(0,0);
@@ -140,3 +163,13 @@ input {
 .cronometro{
     text-wrap: balance;
 }
+/* @keyframes aparecer{
+    from {
+        opacity: 0%;
+        display: none;
+    }
+    to {
+        display: block;
+        opacity: 100%;
+    }
+} */
