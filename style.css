@@ -32,7 +32,7 @@ header {
     background-color: var(--primary-color);
     text-align: center;
     font-size: 1.5rem;
-    z-index: 100;
+    /* z-index: 100; */
 }
 
 .nav {
@@ -92,6 +92,9 @@ header {
     background-color: rgba(0, 0, 0, 0.534);
     backdrop-filter: blur(4px);
     padding: 200px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .nav__sct--show {
@@ -192,4 +195,18 @@ form{
     flex-direction: column;
     align-items: center;
     gap: 10px;
+}
+.online, .offline{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    background-color: green;
+    color: white;
+}
+.offline{
+    background-color: red;
 }

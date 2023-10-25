@@ -6,6 +6,9 @@ import { btnScroll } from "./btn-scroll.mjs";
 import { themes } from "./themes.mjs";
 import {responsive} from "./responsive.mjs";
 import {URLtester} from "./responsive-tester.mjs";
+import userDeviceInfo from "./deteccion-dispositivos.mjs";
+import networkStatus from "./red.mjs";
+import webCam from "./camara.mjs";
 
 //Variables DOM
 const $main = document.getElementById("main");
@@ -13,8 +16,8 @@ const $navSections = document.querySelector(".nav__sct")
 const $img = document.getElementById("bars")
 //Another Variables
 const selOpen = "nav__sct--show",
-    titles = ["Reloj Digital y alarma sonora","Keyboard","Cronometro","Responsive JavaScript","responsive tester"],
-    bs = [...Array(5).keys()],
+    titles = ["Reloj Digital y alarma sonora","Keyboard","Cronometro","Responsive JavaScript","responsive tester","user device info",'Deteccion de red',"WebCam"],
+    bs = [...Array(8).keys()],
     btnSections = ["Reloj", "Detener", "alarma", "detener Alarma"],
     time = `<h3 id="time"></h3>`,
     audio = `<audio><source src="audio/y2mate.com - Si Tu Lo Deseas Puedes Volar feat Cesar Franco.mp3"></audio>`,
@@ -35,7 +38,10 @@ const selOpen = "nav__sct--show",
     desktopResponsive = `<div>
     <iframe loading="lazy" src="https://www.youtube.com/watch?v=5KvlQDYDZwY&list=WL&index=4" frameborder="0"></iframe>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d829628.8703661537!2d139.7442445332905!3d35.68345825149444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x605d1b87f02e57e7%3A0x2e01618b22571b89!2zVG9raW8sIEphcMOzbg!5e0!3m2!1ses-419!2sgt!4v1697839089894!5m2!1ses-419!2sgt" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>`;
+    </div>`,
+    devices = `<div id="user-device"></div>`,
+    red = `<div id="network"></div>`,
+    cam = `<video id="webcam" controls autoplay>Video stream not available</video>`;
 //Sections
 
 const sectionsBase = bs.map(value => {
@@ -64,9 +70,14 @@ $main.children[0].insertAdjacentHTML('beforeend',btn)
 $main.children[0].insertAdjacentHTML('beforeend', audio)
 $main.children[1].insertAdjacentHTML('beforeend',keyboard)
 $main.children[1].insertAdjacentHTML('beforeend',scenery)
+// $main.children[3].insertAdjacentHTML('beforeend',responsive("678",desktopResponsive,mobileResponsive))
 $main.children[2].insertAdjacentHTML('beforeend',cronometro)
 $main.children[4].insertAdjacentHTML('beforeend',responsiveTester)
-// $main.children[3].insertAdjacentHTML('beforeend',responsive("678",desktopResponsive,mobileResponsive))
+$main.children[5].insertAdjacentHTML('beforeend',devices)
+$main.children[6].insertAdjacentHTML('beforeend',red)
+$main.children[7].insertAdjacentHTML('beforeend',cam)
+
+
 
 const insert = (option) =>{
 $main.children[3].insertAdjacentHTML('beforeend',option)
@@ -85,3 +96,7 @@ btnScroll(`.top`);
 themes(`.darkMode`, `[themeDark]`);
 responsive("678",insert,desktopResponsive,mobileResponsive)
 URLtester(`url`,`width`,`height`,`abrir`,`cerrar`)
+userDeviceInfo("user-device")
+networkStatus()
+webCam("webcam")
+
