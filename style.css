@@ -32,7 +32,7 @@ header {
     background-color: var(--primary-color);
     text-align: center;
     font-size: 1.5rem;
-    /* z-index: 100; */
+    z-index: 10;
 }
 
 .nav {
@@ -92,9 +92,7 @@ header {
     background-color: rgba(0, 0, 0, 0.534);
     backdrop-filter: blur(4px);
     padding: 200px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    overflow-y: auto;
 }
 
 .nav__sct--show {
@@ -189,6 +187,10 @@ input {
         opacity: 100%;
     }
 } */
+video{
+    position: relative;
+    z-index: -10;
+}
 form{
     width: 100%;
     display: flex;
@@ -206,6 +208,7 @@ form{
     text-align: center;
     background-color: green;
     color: white;
+    z-index: 11;
 }
 .offline{
     background-color: red;
