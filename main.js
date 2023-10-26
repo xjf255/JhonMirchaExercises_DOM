@@ -10,6 +10,7 @@ import userDeviceInfo from "./deteccion-dispositivos.mjs";
 import networkStatus from "./red.mjs";
 import webCam from "./camara.mjs";
 import location from "./geolocation.mjs";
+import inputFilter from "./filter.mjs";
 
 //Variables DOM
 const $main = document.getElementById("main");
@@ -43,7 +44,48 @@ const selOpen = "nav__sct--show",
     devices = `<div id="user-device"></div>`,
     red = `<div id="network"></div>`,
     cam = `<video id="webcam" controls autoplay>Video stream not available</video>`,
-    geo = `<sections id="location"></sections>`;
+    geo = `<sections id="location"></sections>`,
+    filter = `<form id="filter">
+    <input type="search" id="filter__buscador" placeholder="Filtro de busqueda" required>
+    </form>`,
+    galery = `<div id="galeria" class="galeria">
+    <figure class="galeria__img">
+    <img src="img/1.jpg" alt="Imagen 1">
+    <figcaption class="galeria__description">City</figcaption>
+    </figure>
+    <figure class="galeria__img">
+    <img src="img/2.jpg" alt="Imagen 2">
+    <figcaption class="galeria__description">Town</figcaption>
+    </figure>
+    <figure class="galeria__img">
+    <img src="img/3.jpg" alt="Imagen 3">
+    <figcaption class="galeria__description">Fruts</figcaption>
+    </figure>
+    <figure class="galeria__img">
+    <img src="img/4.jpg" alt="Imagen 4">
+    <figcaption class="galeria__description">Clim</figcaption>
+    </figure>
+    <figure class="galeria__img">
+    <img src="img/5.jpg" alt="Imagen 5">
+    <figcaption class="galeria__description">Tech</figcaption>
+    </figure>
+    <figure class="galeria__img">
+    <img src="img/6.jpg" alt="Imagen 6">
+    <figcaption class="galeria__description">People</figcaption>
+    </figure>
+    <figure class="galeria__img">
+    <img src="img/7.jpg" alt="Imagen 7">
+    <figcaption class="galeria__description">Naturaly</figcaption>
+    </figure>
+    <figure class="galeria__img">
+    <img src="img/8.jpg" alt="Imagen 8">
+    <figcaption class="galeria__description">Moon</figcaption>
+    </figure>
+    <figure class="galeria__img">
+    <img src="img/9.jpg" alt="Imagen 9">
+    <figcaption class="galeria__description">Animals</figcaption>
+    </figure>
+    </div>`;
 //Sections
 
 const sectionsBase = bs.map(value => {
@@ -79,6 +121,8 @@ $main.children[5].insertAdjacentHTML('beforeend',devices)
 $main.children[6].insertAdjacentHTML('beforeend',red)
 $main.children[7].insertAdjacentHTML('beforeend',cam)
 $main.children[8].insertAdjacentHTML('beforeend',geo)
+$main.children[9].insertAdjacentHTML('beforeend',filter)
+$main.children[9].insertAdjacentHTML('beforeend',galery)
 
 
 
@@ -103,3 +147,4 @@ userDeviceInfo("user-device")
 networkStatus()
 webCam("webcam")
 location('location')
+inputFilter("filter__buscador",".galeria__img")
