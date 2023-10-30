@@ -1,25 +1,28 @@
 import { menuHamburguer, cerrarHamburguer } from "./menu.mjs";
-import { clock,initAlarm, stopAlarm } from "./reloj.mjs";
+import { clock, initAlarm, stopAlarm } from "./reloj.mjs";
 import { altkeyboard, moveBall } from "./keyboard.mjs";
 import timeout from "./time.mjs";
 import { btnScroll } from "./btn-scroll.mjs";
 import { themes } from "./themes.mjs";
-import {responsive} from "./responsive.mjs";
-import {URLtester} from "./responsive-tester.mjs";
+import { responsive } from "./responsive.mjs";
+import { URLtester } from "./responsive-tester.mjs";
 import userDeviceInfo from "./deteccion-dispositivos.mjs";
 import networkStatus from "./red.mjs";
 import webCam from "./camara.mjs";
 import location from "./geolocation.mjs";
 import inputFilter from "./filter.mjs";
+import SorteoRandom from "./sorteo.mjs";
+import slide from "./slider.mjs";
 
 //Variables DOM
 const $main = document.getElementById("main");
 const $navSections = document.querySelector(".nav__sct")
 const $img = document.getElementById("bars")
 //Another Variables
+
 const selOpen = "nav__sct--show",
-    titles = ["Reloj Digital y alarma sonora","Keyboard","Cronometro","Responsive JavaScript","responsive tester","user device info",'Deteccion de red',"WebCam","Geolocalizacion","Filtro de Busqueda"],
-    bs = [...Array(10).keys()],
+    titles = ["Reloj Digital y alarma sonora", "Keyboard", "Cronometro", "Responsive JavaScript", "responsive tester", "user device info", 'Deteccion de red', "WebCam", "Geolocalizacion", "Filtro de Busqueda", "Sorteo Digital","Responsive Slider"],
+    bs = [...Array(12).keys()],
     btnSections = ["Reloj", "Detener", "alarma", "detener Alarma"],
     time = `<h3 id="time"></h3>`,
     audio = `<audio><source src="audio/y2mate.com - Si Tu Lo Deseas Puedes Volar feat Cesar Franco.mp3"></audio>`,
@@ -72,20 +75,28 @@ const selOpen = "nav__sct--show",
     <figure class="galeria__img">
     <img src="img/6.jpg" alt="Imagen 6">
     <figcaption class="galeria__description">People</figcaption>
+    </figure></div>`,
+    lenguajes = ['Java', 'C++', 'PHP', 'C#', 'Python', 'JavaScript', 'Ruby', 'TypeScript', 'Dart', 'Go', 'Swift', 'Kotlin', 'TypeScript'],
+    carusel=`<div id="slider" class="slider">
+    <div class="slider-slides">
+    <figure class="slider-slide active">
+    <img src="img/1.jpg" alt="Imagen 1">
     </figure>
-    <figure class="galeria__img">
-    <img src="img/7.jpg" alt="Imagen 7">
-    <figcaption class="galeria__description">Naturaly</figcaption>
+    <figure class="slider-slide">
+    <figcaption class="galeria__description">Town</figcaption>
     </figure>
-    <figure class="galeria__img">
-    <img src="img/8.jpg" alt="Imagen 8">
-    <figcaption class="galeria__description">Moon</figcaption>
+    <figure class="slider-slide">
+    <img src="img/3.jpg" alt="Imagen 3">
     </figure>
-    <figure class="galeria__img">
-    <img src="img/9.jpg" alt="Imagen 9">
-    <figcaption class="galeria__description">Animals</figcaption>
+    <figure class="slider-slide">
+    <figcaption class="galeria__description">Clim</figcaption>
     </figure>
-    </div>`;
+    </div>
+    <section class="slider-btns">
+    <a href="#" class="slider-btn slider-btn--left">&lt;</a>
+    <a href="#" class="slider-btn slider-btn--right">&gt;</a>
+    </section>
+    </figure></div>`;
 //Sections
 
 const sectionsBase = bs.map(value => {
@@ -103,48 +114,61 @@ const btn = btnSections.map(sections => {
     return `<input type="button" value="${sections}" id="${sections}">`
 }).join('')
 
-const navSections = sectionsBase.map((themes,index) => {
+const navSections = sectionsBase.map((themes, index) => {
     return `<a class="nav__sections" href="#${themes}">${titles[index]}</a>`
 }).join(` `)
 
+const sorteo = lenguajes.map(lenguaje => {
+    return `<li class="lenguajes">${lenguaje}</li>`
+}).join(``)
+
+const sectionsSorteo = `<section id="sorteo" class="sorteo"><ul>${sorteo}</ul>
+<input type="button" value="Sortear" id="sortear">
+</section>`;
+
 $navSections.innerHTML = navSections
 $main.innerHTML = sections;
-$main.children[0].insertAdjacentHTML('beforeend',time)
-$main.children[0].insertAdjacentHTML('beforeend',btn)
+$main.children[0].insertAdjacentHTML('beforeend', time)
+$main.children[0].insertAdjacentHTML('beforeend', btn)
 $main.children[0].insertAdjacentHTML('beforeend', audio)
-$main.children[1].insertAdjacentHTML('beforeend',keyboard)
-$main.children[1].insertAdjacentHTML('beforeend',scenery)
+$main.children[1].insertAdjacentHTML('beforeend', keyboard)
+$main.children[1].insertAdjacentHTML('beforeend', scenery)
 // $main.children[3].insertAdjacentHTML('beforeend',responsive("678",desktopResponsive,mobileResponsive))
-$main.children[2].insertAdjacentHTML('beforeend',cronometro)
-$main.children[4].insertAdjacentHTML('beforeend',responsiveTester)
-$main.children[5].insertAdjacentHTML('beforeend',devices)
-$main.children[6].insertAdjacentHTML('beforeend',red)
-$main.children[7].insertAdjacentHTML('beforeend',cam)
-$main.children[8].insertAdjacentHTML('beforeend',geo)
-$main.children[9].insertAdjacentHTML('beforeend',filter)
-$main.children[9].insertAdjacentHTML('beforeend',galery)
+$main.children[2].insertAdjacentHTML('beforeend', cronometro)
+$main.children[4].insertAdjacentHTML('beforeend', responsiveTester)
+$main.children[5].insertAdjacentHTML('beforeend', devices)
+$main.children[6].insertAdjacentHTML('beforeend', red)
+$main.children[7].insertAdjacentHTML('beforeend', cam)
+$main.children[8].insertAdjacentHTML('beforeend', geo)
+$main.children[9].insertAdjacentHTML('beforeend', filter)
+$main.children[9].insertAdjacentHTML('beforeend', galery)
+$main.children[10].insertAdjacentHTML('beforeend', sectionsSorteo)
+$main.children[11].insertAdjacentHTML('beforeend', carusel)
 
 
 
-const insert = (option) =>{
-$main.children[3].insertAdjacentHTML('beforeend',option)
+
+const insert = (option) => {
+    $main.children[3].insertAdjacentHTML('beforeend', option)
 }
 
 menuHamburguer($img, $navSections, selOpen)
 cerrarHamburguer($navSections, selOpen)
-clock(btnSections[0],btnSections[1],'time')
+clock(btnSections[0], btnSections[1], 'time')
 initAlarm(btnSections[2])
-stopAlarm(btnSections[3],btnSections[2])
+stopAlarm(btnSections[3], btnSections[2])
 
 altkeyboard();
-moveBall('.scenary__ball','.scenary');
-timeout(`.time`,`2024,05,02`);
+moveBall('.scenary__ball', '.scenary');
+timeout(`.time`, `2024,05,02`);
 btnScroll(`.top`);
 themes(`.darkMode`, `[themeDark]`);
-responsive("678",insert,desktopResponsive,mobileResponsive)
-URLtester(`url`,`width`,`height`,`abrir`,`cerrar`)
+responsive("678", insert, desktopResponsive, mobileResponsive)
+URLtester(`url`, `width`, `height`, `abrir`, `cerrar`)
 userDeviceInfo("user-device")
 networkStatus()
 webCam("webcam")
 location('location')
-inputFilter("filter__buscador",".galeria__img")
+inputFilter("filter__buscador", ".galeria__img")
+SorteoRandom(".lenguajes", "sortear")
+slide()
