@@ -13,6 +13,7 @@ import location from "./geolocation.mjs";
 import inputFilter from "./filter.mjs";
 import SorteoRandom from "./sorteo.mjs";
 import slide from "./slider.mjs";
+import scrollSpy from "./spy.mjs";
 
 //Variables DOM
 const $main = document.getElementById("main");
@@ -21,15 +22,16 @@ const $img = document.getElementById("bars")
 //Another Variables
 
 const selOpen = "nav__sct--show",
-    titles = ["Reloj Digital y alarma sonora", "Keyboard", "Cronometro", "Responsive JavaScript", "responsive tester", "user device info", 'Deteccion de red', "WebCam", "Geolocalizacion", "Filtro de Busqueda", "Sorteo Digital","Responsive Slider"],
-    bs = [...Array(12).keys()],
+    titles = ["Reloj Digital y alarma sonora", "Keyboard", "Cronometro", "Responsive JavaScript", "responsive tester", "user device info", 'Deteccion de red', "WebCam", "Geolocalizacion", 
+    "Filtro de Busqueda", "Sorteo Digital","Responsive Slider", "Video Interactivo", "Span"],
+    bs = [...Array(14).keys()],
     btnSections = ["Reloj", "Detener", "alarma", "detener Alarma"],
     time = `<h3 id="time"></h3>`,
     audio = `<audio><source src="audio/y2mate.com - Si Tu Lo Deseas Puedes Volar feat Cesar Franco.mp3"></audio>`,
     keyboard = `<div class="keyboard"></div>`,
     scenery = `<div class="scenary"><div class="scenary__ball"></div></div>`,
     cronometro = `<div class = "cronometro"><span class = "time"></span></div>`,
-    responsiveJs = `<section></section>`,
+    videoInteligent = `<video id="vd" src="video/pexels-mikhail-nilov-6981409 (Original).mp4" loop autoplay loading="Lazy">Video stream not available</video>`,
     responsiveTester = `<form><input type="text" id="url" placeholder="URL" required>
     <input name="width" type="text" id="width" placeholder="Width" required>
     <input type="text" id="height" placeholder="Height" required>
@@ -53,27 +55,27 @@ const selOpen = "nav__sct--show",
     </form>`,
     galery = `<div id="galeria" class="galeria">
     <figure class="galeria__img">
-    <img src="img/1.jpg" alt="Imagen 1">
+    <img src="img/1.jpg" alt="Imagen 1" loading="Lazy">
     <figcaption class="galeria__description">City</figcaption>
     </figure>
     <figure class="galeria__img">
-    <img src="img/2.jpg" alt="Imagen 2">
+    <img src="img/2.jpg" alt="Imagen 2" loading="Lazy">
     <figcaption class="galeria__description">Town</figcaption>
     </figure>
     <figure class="galeria__img">
-    <img src="img/3.jpg" alt="Imagen 3">
+    <img src="img/3.jpg" alt="Imagen 3" loading="Lazy">
     <figcaption class="galeria__description">Fruts</figcaption>
     </figure>
     <figure class="galeria__img">
-    <img src="img/4.jpg" alt="Imagen 4">
+    <img src="img/4.jpg" alt="Imagen 4" loading="Lazy">
     <figcaption class="galeria__description">Clim</figcaption>
     </figure>
     <figure class="galeria__img">
-    <img src="img/5.jpg" alt="Imagen 5">
+    <img src="img/5.jpg" alt="Imagen 5" loading="Lazy">
     <figcaption class="galeria__description">Tech</figcaption>
     </figure>
     <figure class="galeria__img">
-    <img src="img/6.jpg" alt="Imagen 6">
+    <img src="img/6.jpg" alt="Imagen 6" loading="Lazy">
     <figcaption class="galeria__description">People</figcaption>
     </figure></div>`,
     lenguajes = ['Java', 'C++', 'PHP', 'C#', 'Python', 'JavaScript', 'Ruby', 'TypeScript', 'Dart', 'Go', 'Swift', 'Kotlin', 'TypeScript'],
@@ -105,7 +107,7 @@ const sectionsBase = bs.map(value => {
 
 const sections = sectionsBase.map((themes, index) => {
     // console.log(titles[index])
-    return `<div class="sections" id="${themes}">
+    return `<div class="sections" id="${themes}" data-scroll-spy>
     <h2>${titles[index]}</h2>
     </div>`
 }).join(``)
@@ -115,7 +117,7 @@ const btn = btnSections.map(sections => {
 }).join('')
 
 const navSections = sectionsBase.map((themes, index) => {
-    return `<a class="nav__sections" href="#${themes}">${titles[index]}</a>`
+    return `<a class="nav__sections" href="#${themes}" data-scroll-spy>${titles[index]}</a>`
 }).join(` `)
 
 const sorteo = lenguajes.map(lenguaje => {
@@ -144,6 +146,7 @@ $main.children[9].insertAdjacentHTML('beforeend', filter)
 $main.children[9].insertAdjacentHTML('beforeend', galery)
 $main.children[10].insertAdjacentHTML('beforeend', sectionsSorteo)
 $main.children[11].insertAdjacentHTML('beforeend', carusel)
+$main.children[12].insertAdjacentHTML('beforeend', videoInteligent)
 
 
 
@@ -171,4 +174,5 @@ webCam("webcam")
 location('location')
 inputFilter("filter__buscador", ".galeria__img")
 SorteoRandom(".lenguajes", "sortear")
-slide()
+slide();
+scrollSpy();
