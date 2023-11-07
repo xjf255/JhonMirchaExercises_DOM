@@ -299,6 +299,74 @@ form{
     height:auto;
     object-fit: cover;
 }
+    /* ******************ContactForm****************** */
+    .contactForm{
+        --form-ok-color: #4caf50;
+        --form-error-color: #f44336;
+        color: #000;
+        margin-left:auto;
+        margin-right: auto;
+        width: 80%;
+    }
+    .contactForm > *{
+        padding: 0.5rem;
+        margin: 1rem auto;
+        display: block;
+        width: 100%;
+    }
+    .contactForm textarea{
+        resize: none;
+    }
+    .contactForm legend, 
+    .contactForm-response{
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+    }
+    .contactForm input,
+    .contactForm textarea{
+        font-size: 1rem;
+        font-family: sans-serif;
+    }
+    .contactForm input[type="submit"]{
+        width: 50%;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .contactForm *::placeholder{
+        color: rgb(172, 161, 161);
+        font-weight: 600;
+    }
+    .contactForm [required]:valid{
+        border: thin solid var(--form-ok-color);
+    }
+    .contactForm [required]:invalid{
+        border: thin solid var(--form-error-color);
+    }
+    .contactForm-error{
+        margin-top: -1rem;
+        font-size: 80%;
+        background-color: var(--form-error-color);
+        color: white;
+        transition: all 800ms ease;
+    }
+    .contactForm-error.is-active{
+        display: block;
+        animation: show-message 1s 1 normal 0s ease-out both;
+    }
+    .none{
+        display: none;
+    }
+    @keyframes show-message {
+        0% {
+            visibility: hidden;
+            opacity: 0;
+        }
+        100% {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
 @media (width > 1024px) {
     body{
         display: grid;

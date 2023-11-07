@@ -11,7 +11,7 @@ export default function scrollSpy() {
             }
         });
     }
-
+    
     const observer = new IntersectionObserver(cb, {
         // rootMargin: '-250px 0px -250px 0px',
         threshold: [0.5, 0.75]

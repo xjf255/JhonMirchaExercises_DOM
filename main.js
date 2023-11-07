@@ -14,6 +14,9 @@ import inputFilter from "./filter.mjs";
 import SorteoRandom from "./sorteo.mjs";
 import slide from "./slider.mjs";
 import scrollSpy from "./spy.mjs";
+import inteligentVideo from "./inteligentVideo.mjs";
+import validationForm from "./validacionForm.mjs";
+import voz from "./narrador.mjs";
 
 //Variables DOM
 const $main = document.getElementById("main");
@@ -22,16 +25,16 @@ const $img = document.getElementById("bars")
 //Another Variables
 
 const selOpen = "nav__sct--show",
-    titles = ["Reloj Digital y alarma sonora", "Keyboard", "Cronometro", "Responsive JavaScript", "responsive tester", "user device info", 'Deteccion de red', "WebCam", "Geolocalizacion", 
-    "Filtro de Busqueda", "Sorteo Digital","Responsive Slider", "Video Interactivo", "Span"],
-    bs = [...Array(14).keys()],
+    titles = ["Reloj Digital y alarma sonora", "Keyboard", "Cronometro", "Responsive JavaScript", "responsive tester", "user device info", 'Deteccion de red', "WebCam", "Geolocalizacion",
+        "Filtro de Busqueda", "Sorteo Digital", "Responsive Slider", "Video Interactivo", "Formulario de Contacto", "Narrador"],
+    bs = [...Array(15).keys()],
     btnSections = ["Reloj", "Detener", "alarma", "detener Alarma"],
     time = `<h3 id="time"></h3>`,
     audio = `<audio><source src="audio/y2mate.com - Si Tu Lo Deseas Puedes Volar feat Cesar Franco.mp3"></audio>`,
     keyboard = `<div class="keyboard"></div>`,
     scenery = `<div class="scenary"><div class="scenary__ball"></div></div>`,
     cronometro = `<div class = "cronometro"><span class = "time"></span></div>`,
-    videoInteligent = `<video id="vd" src="video/pexels-mikhail-nilov-6981409 (Original).mp4" loop autoplay loading="Lazy">Video stream not available</video>`,
+    videoInteligent = `<video id="vd" src="video/pexels-mikhail-nilov-6981409 (Original).mp4" loop autoplay controls loading="Lazy">Video stream not available</video>`,
     responsiveTester = `<form><input type="text" id="url" placeholder="URL" required>
     <input name="width" type="text" id="width" placeholder="Width" required>
     <input type="text" id="height" placeholder="Height" required>
@@ -79,7 +82,7 @@ const selOpen = "nav__sct--show",
     <figcaption class="galeria__description">People</figcaption>
     </figure></div>`,
     lenguajes = ['Java', 'C++', 'PHP', 'C#', 'Python', 'JavaScript', 'Ruby', 'TypeScript', 'Dart', 'Go', 'Swift', 'Kotlin', 'TypeScript'],
-    carusel=`<div id="slider" class="slider">
+    carusel = `<div id="slider" class="slider">
     <div class="slider-slides">
     <figure class="slider-slide active">
     <img src="img/1.jpg" alt="Imagen 1">
@@ -98,7 +101,29 @@ const selOpen = "nav__sct--show",
     <a href="#" class="slider-btn slider-btn--left">&lt;</a>
     <a href="#" class="slider-btn slider-btn--right">&gt;</a>
     </section>
-    </figure></div>`;
+    </figure></div>`,
+    form = `<form class="contactForm">
+    <legend>Envianos tus comentarios</legend>
+    <input type="text" name="name" placeholder="Escribe tu nombre" title="Nombre solo acepta letras y espacios en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+    <input type="email" name="email" placeholder="Escribe tu email" title="Email incorrecto" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" required>
+    <input type="text" name="subject" placeholder="Asunto a tratar" title="El asunto es requerido" required>
+    <textarea name="comments" cols="50" rows="5" placeholder="Escribe tus comentarios" title="Tu comentario no debe exceder de 255 caracteres"
+    data-patterns ="^.{1,255}$" required></textarea>
+    <input type="submit" value="Enviar">
+    <div class="contactForm-loader none">
+        <img src="img/SVG-Loaders-master/svg-loaders/puff.svg" alt="Cargando">
+    </div>
+    <div class="contactForm-response none">
+        <p>Los datos han sido enviados</p>
+    </div>
+</form>`,
+    speach = `    <select id="speech-select">
+    <option value="">--------select  an option---------</option>
+</select>
+<br><br>
+<textarea name="speech-txt" id="speech-txt" cols="50" rows="5" placeholder="ingresa texto"></textarea>
+<br><br>
+<button id="speech-btn">Leer texto</button>`;
 //Sections
 
 const sectionsBase = bs.map(value => {
@@ -147,8 +172,8 @@ $main.children[9].insertAdjacentHTML('beforeend', galery)
 $main.children[10].insertAdjacentHTML('beforeend', sectionsSorteo)
 $main.children[11].insertAdjacentHTML('beforeend', carusel)
 $main.children[12].insertAdjacentHTML('beforeend', videoInteligent)
-
-
+$main.children[13].insertAdjacentHTML('beforeend', form)
+$main.children[14].insertAdjacentHTML('beforeend', speach)
 
 
 const insert = (option) => {
@@ -176,3 +201,6 @@ inputFilter("filter__buscador", ".galeria__img")
 SorteoRandom(".lenguajes", "sortear")
 slide();
 scrollSpy();
+inteligentVideo("vd")
+validationForm();
+voz();
